@@ -16,7 +16,7 @@
 ![](http://oyvr3xxmh.bkt.clouddn.com/18-1-12/56922422.jpg)
 * F(x)+x可以被认为是一个“shortcut connections”，关于shortcut我们可以看下图：<br> 
 
-![](http://oyvr3xxmh.bkt.clouddn.com/17-12-28/34147465.jpg)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/ResNet/datasets/resnet.png)
 * 在上图中a^([l])到a^([l+2])经过了两层神经网络层，在传统的神经网络的前向传播中，a^([l])首先经过线性操作得到z^([l+1])=w^([l+1]) a^([l])+b^([l+1])，并通过ReLU非线性激活得到a^([l+1])。然后又通过线性操作得到z^([l+2])=w^([l+2]) a^([l+1])+b^([l+2])，同样的ReLU非线性激活得到a^([l+2])。这是常规网络在前向传播中所进行的处理。而shortcut的处理则是它首先将a^([l])复制一份到z^([l+2])之后，然后和z^([l+2])一起进行一个ReLU非线性激活。
 * 论文中还提到了该模型随着深度的增加，产生的结果要比之前传统的网络要表现好得多。而且该模型不仅在ImageNet的数据集上表现的很好，在诸如COCO等的数据集上同样有着很好的表现，说明该模型可以被用作一个通用的模型。
 
