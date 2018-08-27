@@ -57,23 +57,23 @@ F(x)+x可以被认为是一个“shortcut connections”，关于shortcut我们�
 
 ![](http://oyvr3xxmh.bkt.clouddn.com/17-12-28/96736967.jpg)
 
-	* 没有增加一个参数防止了网络退化问题得到发生，这里便可以窥到shortcut的强大之处。还有一点是，可以在上表中看到18层的常规网络和18层的ResNet的错误率几乎没有差别，但是ResNet会收敛地更加快。
-	* 接着论文中比较了Identity shortcut和projection shortcut两种处理维度不一致的方法。从上面的介绍中我们已经知道了这两种方法一个是用0填充参数，另一个是通过1x1卷积核改变维度。比较结果如下表所示：<br> 
+* 没有增加一个参数防止了网络退化问题得到发生，这里便可以窥到shortcut的强大之处。还有一点是，可以在上表中看到18层的常规网络和18层的ResNet的错误率几乎没有差别，但是ResNet会收敛地更加快。
+* 接着论文中比较了Identity shortcut和projection shortcut两种处理维度不一致的方法。从上面的介绍中我们已经知道了这两种方法一个是用0填充参数，另一个是通过1x1卷积核改变维度。比较结果如下表所示：<br> 
 
 
 ![](http://oyvr3xxmh.bkt.clouddn.com/17-12-28/4087033.jpg)
 
-	* 在这里一共采用了三种方法（可以看到上表中也有A、B、C），第一种零填充方法，第二种是针对维度增加的那几层采取projection shortcut，而其它层仍然采用identity shortcut，第三种是所有的shortcut都是projection shortcut。从上表中可以看到三种方法最后的效果，B和C要好于A，C轻微地好于B，但是这三种方法之间的差别很小，说明projection shortcut其实并不是必要的，而且Identity shortcut还能减少一些计算和内存占用。
-	* 接下去说一个瓶颈结构（Deeper Bottleneck Architectures），如下图ResNet将shortcut中间的两层变为了三层（右图所示）：<br> 
+* 在这里一共采用了三种方法（可以看到上表中也有A、B、C），第一种零填充方法，第二种是针对维度增加的那几层采取projection shortcut，而其它层仍然采用identity shortcut，第三种是所有的shortcut都是projection shortcut。从上表中可以看到三种方法最后的效果，B和C要好于A，C轻微地好于B，但是这三种方法之间的差别很小，说明projection shortcut其实并不是必要的，而且Identity shortcut还能减少一些计算和内存占用。
+* 接下去说一个瓶颈结构（Deeper Bottleneck Architectures），如下图ResNet将shortcut中间的两层变为了三层（右图所示）：<br> 
 
 	![](http://oyvr3xxmh.bkt.clouddn.com/17-12-28/75506036.jpg)
-	* 在这个结构中用到了两个1x1卷积层，第一个1x1卷积层所做的操作是降维，如上图中便是将256维降到了64维，然后通过一个3x3卷积层获取特征，第二个1x1卷积层所做的是升维，将输出又变回与输入一致，这样做就可以大大地减少计算复杂度，而且还能保证性能没有什么损失，这种结构很像一个瓶颈的结构
-	* 论文之后还介绍了ResNet在CIFAR-10数据集上的表现，同样证明了ResNet不会出现像常规网络那样随着深度增加的退化现象。
+* 在这个结构中用到了两个1x1卷积层，第一个1x1卷积层所做的操作是降维，如上图中便是将256维降到了64维，然后通过一个3x3卷积层获取特征，第二个1x1卷积层所做的是升维，将输出又变回与输入一致，这样做就可以大大地减少计算复杂度，而且还能保证性能没有什么损失，这种结构很像一个瓶颈的结构
+* 论文之后还介绍了ResNet在CIFAR-10数据集上的表现，同样证明了ResNet不会出现像常规网络那样随着深度增加的退化现象。
 #
 4 总结
 -------
 
-	* ResNet网络的重点如下： 
+* ResNet网络的重点如下： 
 >	* Residual block和shortcut connection的引入，使网络能够达到更高的层数并且不会发生网络退化现象； 
 >>* 再一次（GoogLeNet也提到过）证明了用avg pooling+softmax代替几个FC+softmax能带来更小的参数数量和计算量并不容易造成过拟合。
 #
