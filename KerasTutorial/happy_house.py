@@ -68,7 +68,6 @@ def HappyModel(input_shape):
     # Create model. This creates your Keras model instance, you'll use this instance to train/test the model.
     model = Model(inputs = X_input, outputs = X, name='HappyModel')
 
-    ### END CODE HERE ###
 
     return model
 
@@ -81,9 +80,9 @@ print ("Loss = " + str(preds[0]))
 print ("Test Accuracy = " + str(preds[1]))
 happyModel.summary()
 
-### START CODE HERE ###
-img_path = 'E:\\深度学习\\吴恩达深度学习课程\\代码\\卷积神经网络\\KerasTutorial\\images\\test4.jpg'
-### END CODE HERE ###
+# test your own photos
+img_path = 'E:\\KerasTutorial\\images\\test.jpg'
+
 img = image.load_img(img_path, target_size=(64, 64))
 imshow(img)
 plt.show()
