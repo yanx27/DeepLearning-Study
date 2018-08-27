@@ -1,7 +1,7 @@
 ﻿ResNet (深度残差网络)
 ====  
 #
-* 参考文献为KaiMing He的[Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385v1.pdf) 
+* 参考文献为KaiMing He的 [Deep Residual Learning for Image Recognition](https://arxiv.org/pdf/1512.03385v1.pdf) 
 * 基于之前的一些模型的学习，可以看出卷积神经网络的深度对最后的分类和识别结果有着重要的影响。而且可以看到自2012年，每年ImageNet的ILSVRC冠军的网络模型的深度都在递增。ResNet是由KaiMing He在2015年发表，并基于该模型获得了当年ImageNet detection，ImageNet localization，COCO detection等多个比赛的冠军。
 * 在ImageNet数据集中，He使用了一个152层的深度残差网络，虽然该网络的深度是VGG网络的八倍，但复杂度却更低。最后其在该数据集上top-5的错误率为3.57%，这是一个非常好的成绩（人类的平均错误率是5.1%），该篇论文主要的观点便是提出了一个残差结构。
 #
