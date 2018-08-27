@@ -112,7 +112,6 @@ def convolutional_block(X, f, filters, stage, block, s = 2):
     X = BatchNormalization(axis = 3, name = bn_name_base + '2a')(X)
     X = Activation('relu')(X)
 
-    ### START CODE HERE ###
 
     # Second component of main path (≈3 lines)
     X = Conv2D(F2, (f, f), strides = (1,1), name = conv_name_base + '2b', padding = 'same', kernel_initializer = glorot_uniform(seed=0))(X)
@@ -130,8 +129,6 @@ def convolutional_block(X, f, filters, stage, block, s = 2):
     # Final step: Add shortcut value to main path, and pass it through a RELU activation (≈2 lines)
     X = Add()([X, X_shortcut])
     X = Activation('relu')(X)
-
-    ### END CODE HERE ###
 
     return X
 
@@ -168,8 +165,6 @@ def ResNet50(input_shape = (64, 64, 3), classes = 6):
     X = identity_block(X, 3, [64, 64, 256], stage=2, block='b')
     X = identity_block(X, 3, [64, 64, 256], stage=2, block='c')
 
-    ### START CODE HERE ###
-
     # Stage 3 (≈4 lines)
     X = convolutional_block(X, f = 3, filters = [128, 128, 512], stage = 3, block='a', s = 2)
     X = identity_block(X, 3, [128, 128, 512], stage=3, block='b')
@@ -192,7 +187,6 @@ def ResNet50(input_shape = (64, 64, 3), classes = 6):
     # AVGPOOL (≈1 line). Use "X = AveragePooling2D(...)(X)"
     X = AveragePooling2D((2, 2), name='avg_pool')(X)
 
-    ### END CODE HERE ###
 
     # output layer
     X = Flatten()(X)
@@ -206,11 +200,12 @@ def ResNet50(input_shape = (64, 64, 3), classes = 6):
 model = ResNet50(input_shape = (64, 64, 3), classes = 6)
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 # checkpoint
-filepath='weights.best.hdf5'
+filepath='E:\\Github\\DeepLearning Study\\DeepLearning-Study\\ResNet\\weights.best.hdf5'
 # 有一次提升, 则覆盖一次.
 checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True,mode='max')
+callbacks_list = [checkpoint] # fit时callbacks=callbacks_list
 
-
+#读入数据
 X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()
 
 # Normalize image vectors
@@ -229,7 +224,7 @@ print ("X_test shape: " + str(X_test.shape))
 print ("Y_test shape: " + str(Y_test.shape))
 
 # Start training
-hist = model.fit(X_train, Y_train, epochs = 80, batch_size = 128,validation_split=0.2)
+hist = model.fit(X_train, Y_train, epochs = 10, batch_size = 128,validation_split=0.2,callbacks=callbacks_list,verbose=0)
 # print(hist.history)
 preds = model.evaluate(X_test, Y_test)
 print ("Loss = " + str(preds[0]))
