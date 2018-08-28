@@ -5,7 +5,7 @@ import os
 import tensorflow as tf
 
 def load_dataset():
-    os.chdir('E:\\深度学习\\吴恩达深度学习课程\\代码\\卷积神经网络\\CNN Application\\datasets')
+    os.chdir('E:\\datasets')
     train_dataset = h5py.File('train_signs.h5', "r")
     train_set_x_orig = np.array(train_dataset["train_set_x"][:])  # your train set features
     train_set_y_orig = np.array(train_dataset["train_set_y"][:])  # your train set labels
@@ -215,7 +215,7 @@ with tf.Session() as sess:
         accurracy_list.append(sess.run(accurracy, feed_dict={X: X_test, Y: Y_test,keep_prob:1}))
         loss.append(sess.run(cross_entropy,feed_dict={X: X_train, Y: Y_train,keep_prob:1}))
         print('Iteration'+ str(epoch) +', Train accuracy: %.2f%%' %(train_acc*100) +', Testing accuracy: %.2f%%' %(test_acc*100))
-        # saver.save(sess,'E:\\深度学习\\吴恩达深度学习课程\\代码\\卷积神经网络\\CNN Application\\model/')
+        # saver.save(sess,'E:\\model/')
 ax1 = plt.subplot(211)
 ax1.plot(loss,'r--')
 plt.ylabel('Loss')
