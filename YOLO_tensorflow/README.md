@@ -9,12 +9,12 @@
 
 * 在 weights 放入模型参数：
 
-    链接: https://pan.baidu.com/s/1htt9YBE 密码: ehw2
+    链接：https://pan.baidu.com/s/1qcv6OagovmgH33wg9ddlVw 密码：pv43
 
 
 * 在pascal_voc放入训练数据集，下载链接：
 
-    链接: https://pan.baidu.com/s/1kWshVhl 密码: 89iu
+    链接：https://pan.baidu.com/s/1StO2SnZRa18idGMPnnGDtQ 密码：15tl
 
 
 * 可以在yolo文件夹中的config.py文件里调整模型训练参数
