@@ -16,7 +16,7 @@
     链接：https://pan.baidu.com/s/1qcv6OagovmgH33wg9ddlVw 密码：pv43
 
 
-* 在pascal_voc放入训练数据集，下载链接：
+* 在pascal_voc放入训练数据集：
 
     链接：https://pan.baidu.com/s/1StO2SnZRa18idGMPnnGDtQ 密码：15tl
 
