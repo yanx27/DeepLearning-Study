@@ -1,6 +1,6 @@
 ## YOLO-Tensorflow
 
-* 代码基于[You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/pdf/1506.02640.pdf), 包含训练和测试部分 
+* 代码基于 [You Only Look Once: Unified, Real-Time Object Detection](https://arxiv.org/pdf/1506.02640.pdf), 包含训练和测试部分 
 
 * 下载训练数据以及模型参数：
 
