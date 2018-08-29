@@ -25,8 +25,7 @@ ResourceExhaustedError (see above for traceback): OOM when allocating tensor wit
 	 [[Node: yolo/conv_20/Conv2D = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/device:GPU:0"](yolo/conv_19/leaky_relu/Maximum, yolo/conv_20/weights/read/_201)]]
 	 [[Node: gradients/AddN_12/_323 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/device:CPU:0", send_device="/job:localhost/replica:0/task:0/device:GPU:0", send_device_incarnation=1, tensor_name="edge_3737_gradients/AddN_12", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/device:CPU:0"]()]]
 ```
-
-    则需要调小minibatch的大小
+则需要调小minibatch的大小
 
 
 * 训练
@@ -34,7 +33,7 @@ ResourceExhaustedError (see above for traceback): OOM when allocating tensor wit
 	$ python train.py
 	```
 
-	* 测试
+* 测试
 	```Shell
 	$ python test.py
 	```
