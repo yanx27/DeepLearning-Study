@@ -18,7 +18,8 @@
 
 
 * 可以在yolo文件夹中的config.py文件里调整模型训练参数
-若出现错误
+
+    训练时若出现错误
 
 ```
 ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[48,28,28,1024]
