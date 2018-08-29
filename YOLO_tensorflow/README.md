@@ -8,18 +8,19 @@
 
 * 在 weights 放入模型参数：
 
-链接: https://pan.baidu.com/s/1htt9YBE 密码: ehw2
+    链接: https://pan.baidu.com/s/1htt9YBE 密码: ehw2
 
 
 * 在pascal_voc放入训练数据集，下载链接：
 
-链接: https://pan.baidu.com/s/1kWshVhl 密码: 89iu
+    链接: https://pan.baidu.com/s/1kWshVhl 密码: 89iu
 
 
 * 可以在yolo文件夹中的config.py文件里调整模型训练参数
 若出现错误
 
-```ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[48,28,28,1024]
+```
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[48,28,28,1024]
 	 [[Node: yolo/conv_20/Conv2D = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/device:GPU:0"](yolo/conv_19/leaky_relu/Maximum, yolo/conv_20/weights/read/_201)]]
 	 [[Node: gradients/AddN_12/_323 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/device:CPU:0", send_device="/job:localhost/replica:0/task:0/device:GPU:0", send_device_incarnation=1, tensor_name="edge_3737_gradients/AddN_12", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/device:CPU:0"]()]]
 ```
