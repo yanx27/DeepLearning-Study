@@ -64,6 +64,6 @@
 * YOLO使用均方和误差作为loss函数来优化模型参数，即网络输出的SxSx(Bx5+C)维向量与真实图像的对应SxSx(Bx5+C)维向量的均方和误差。如下式所示。<br>
 ![](https://www.zhihu.com/equation?tex=loss%3D%5Csum_%7Bi%3D0%7D%5E%7BS%5E%7B2%7D+%7D%7BcoordError+%2B+iouError+%2B+classError%7D+)
 
-YOLO对上式loss的计算进行了如下修正:<br>
+* YOLO对上式loss的计算进行了如下修正:<br>
 ![](https://pic2.zhimg.com/80/v2-c629e12fb112f0e3c36b0e5dca60103a_hd.jpg)
 
