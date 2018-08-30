@@ -23,6 +23,6 @@
 * confidence反映当前bounding box是否包含物体以及物体位置的准确性，计算方式如下：<br>
 
 
-> confidence = Pr(object) * IOU
+>     confidence = Pr(object) * IOU
 > 其中，若bounding box包含物体，则Pr(object)=1；否则Pr(object)=0。IOU (intersection over union)为预测bounding box与物体真实区域的交集面积占并集面积的比例。
 
