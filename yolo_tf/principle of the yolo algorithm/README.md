@@ -33,7 +33,7 @@
 #
 3、YOLO算法的最终输入与输出
 -------
-* 这里先以DeepLearning.ai视频中的为例子：
+* 这里先以[DeepLearning.ai](https://mooc.study.163.com/smartSpec/detail/1001319001.htm)视频中的为例子：
 ![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture2.png)
 * 从上图可以看出，我们假设是做一个只有车辆、行人和摩托车的三对象识别问题（C=3），grid cell个数为3x3，bounding box的种类为2，右边的向量就是每一个grid cell将要对应的值。向量的第一位Pc对应着confidence，bx,by,bh,bh代表着这个bonding box的范围，c1,c2,c3对应着这个grid cell的object是每一个类别的概率值，而整个前八个数值，代表着第一个bounding box，下面的第九到第十六个数的含义与第一个bounding box相同，代表着第二个bonding box的结果。
 * 从右边的图可以看出，当这个grid cell没有对象的时候（即Pr(object)=0），底下的那些数值我们并不关心；当底下（绿色格子）中出现了与bouding box 2形状相一致的物体时，向量中代表第二个bounding box的位置有数字，而代表bounding box 1的那些位置Pc为0，故剩下的位置我们不关心。
