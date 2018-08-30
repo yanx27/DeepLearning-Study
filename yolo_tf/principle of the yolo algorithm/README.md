@@ -55,3 +55,9 @@
 -------
 * YOLO检测网络网络方面主要采用GoogLeNet，包括24个卷积层和2个全连接层，卷积层主要用来提取特征，全连接层主要用来预测类别概率和坐标。最后的输出是7x7x30，这里30=20+2x(4+1)，由20个类别,4个bounding box的决定系数和一个Pc得出，7x7是grid cell的数量。这里注意下实现的细节可能人人都不大一样，比如对inception的改动，最后几层的全连接层的改动等等，但是重点在于最后一层的输出是7*7*30。网络结构如图所示：<br>
 ![](https://pic1.zhimg.com/80/v2-2c4e8576b987236de47f91ad594bf36d_hd.jpg)
+#
+6、损失函数
+-------
+* YOLO使用均方和误差作为loss函数来优化模型参数，即网络输出的SxSx(Bx5+C)维向量与真实图像的对应SxSx(Bx5+C)维向量的均方和误差。如下式所示。<br>
+![](https://www.zhihu.com/equation?tex=loss%3D%5Csum_%7Bi%3D0%7D%5E%7BS%5E%7B2%7D+%7D%7BcoordError+%2B+iouError+%2B+classError%7D+)
+
