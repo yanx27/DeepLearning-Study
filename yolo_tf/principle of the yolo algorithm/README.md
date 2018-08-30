@@ -19,5 +19,9 @@
 ![](https://pic1.zhimg.com/80/v2-4b3c159386ae24809aa6721cf307df30_hd.jpg)
 * Bounding box信息包含5个数据值，分别是x,y,w,h,和confidence。其中x,y是指当前格子预测得到的物体的bounding box的中心位置的坐标（其将每个格子的左上角定义为(0,0)，右下角定义为(1,1)，故x和y是取值为0和1之间的数）。w,h是bounding box的宽度和高度。（其将w和h归一化，用其与每个格子的宽度之比来表示，因此若其bounding box宽度或高度大于格子的宽度，其可能大于1）
 * confidence反映当前bounding box是否包含物体以及物体位置的准确性，计算方式如下：<br>
-![](https://img-blog.csdn.net/20170521225450577?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-    其中，若bounding box包含物体，则P(object)=1；否则P(object)=0。IOU(intersection over union)为预测bounding box与物体真实区域的交集面积除以并集面积的占比。
+
+'''
+Pr(object)*IOU
+'''
+
+其中，若bounding box包含物体，则Pr(object)=1；否则Pr(object)=0。IOU(intersection over union)为预测bounding box与物体真实区域的交集面积除以并集面积的占比。
