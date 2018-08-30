@@ -26,4 +26,6 @@
 >     confidence = Pr(object) * IOU
 > 其中，若bounding box包含物体，则Pr(object)=1；否则Pr(object)=0。IOU (intersection over union)为预测bounding box与物体真实区域的交集面积占并集面积的比例。
 
-* 每个bounding box都对应一个confidence score，如果grid cell里面没有object，confidence就是0；如果有，则confidence score等于预测的box包含物体与否的值和其box中IOU值的乘积，见上面公式。如果一个object的中心点坐标在一个grid cell中，那么这个grid cell就是包含这个object，也就是说这个object的预测就由该grid cell负责。 每个grid cell都预测C个类别概率，表示一个grid cell在包含object的条件下属于某个类别的概率
+* 每个bounding box都对应一个confidence score，如果grid cell里面没有object，confidence就是0（在其为0的时候，损失函数不关注x,y,w,h，故它们的值不重要）；如果有，则confidence score等于预测的box包含物体与否的值和其box中IOU值的乘积，见上面公式。如果一个object的中心点坐标在一个grid cell中，那么这个grid cell就是包含这个object，也就是说这个object的预测就由该grid cell负责。 
+* 同样，每个grid cell都预测C个类别概率，表示一个grid cell在包含object的条件下属于某个类别的概率。因此其得到每个bounding box属于哪一类的confidence score（若其 Pr(object)=0，则不关心其概率的大小），也就是说最后会得到20x（7x7x2）=20x98个score矩阵，括号里面2是bounding box的数量，7x7是grid cell的数量，20代表类别数。作者开源出的YOLO代码中，全连接层输出特征向量各维度对应内容如下：<br>
+![](https://pic3.zhimg.com/80/v2-1098c1152f55d73a859f20bae3d9bb1e_hd.jpg)
