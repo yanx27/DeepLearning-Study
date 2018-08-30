@@ -22,4 +22,5 @@
 
 
 >     confidence = Pr(object) * IOU
-> 其中，若bounding box包含物体，则Pr(object)=1；否则Pr(object)=0。IOU(intersection over union)为预测bounding box与物体真实区域的交集面积除以并集面积的占比。
+> 其中，若bounding box包含物体，则Pr(object)=1；否则Pr(object)=0。IOU (intersection over union)为预测bounding box与物体真实区域的交集面积占并集面积的比例。
+
