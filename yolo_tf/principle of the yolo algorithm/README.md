@@ -84,7 +84,7 @@
 #
 参考资料
 -------
-1、[YOLO-Google幻灯片](ttps://docs.google.com/presentation/d/1aeRvtKG21KHdD5lg6Hgyhx5rPq_ZOsGjG5rJ1HP7BbA/pub?start=false&loop=false&delayms=3000&slide=id.p )
-2、[论文阅读笔记：You Only Look Once: Unified, Real-Time Object Detection](http://blog.csdn.net/tangwei2014/article/details/50915317)
-3、[YOLO详解](https://zhuanlan.zhihu.com/p/25236464 )
+* [YOLO-Google幻灯片](ttps://docs.google.com/presentation/d/1aeRvtKG21KHdD5lg6Hgyhx5rPq_ZOsGjG5rJ1HP7BbA/pub?start=false&loop=false&delayms=3000&slide=id.p )
+* [论文阅读笔记：You Only Look Once: Unified, Real-Time Object Detection](http://blog.csdn.net/tangwei2014/article/details/50915317)
+* [YOLO详解](https://zhuanlan.zhihu.com/p/25236464 )
 
