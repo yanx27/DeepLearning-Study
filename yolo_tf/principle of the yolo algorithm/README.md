@@ -44,3 +44,5 @@
 4、非最大值抑制（NMS）
 -------
 * 针对某一类别，选择得分最大的bounding box，然后计算它和其它bounding box的IOU值，如果IOU大于0.5，说明重复率较大，该得分设为0，如果不大于0.5，则不改；这样一轮后，再选择剩下的score里面最大的那个bounding box，然后计算该bounding box和其它bounding box的IOU，重复以上过程直到最后。最后每个bounding box的C个score取最大的score，如果这个score大于0，那么这个bounding box就是这个socre对应的类别（矩阵的行），如果小于0，说明这个bounding box里面没有物体，跳过即可。
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture4.png)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture5.png)
