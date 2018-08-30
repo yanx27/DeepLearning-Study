@@ -33,5 +33,6 @@
 #
 3、YOLO算法最终如何进行目标检测
 -------
-> 这里先以S=3，B=2，C=3为例子：
-![](https://img-blog.csdn.net/20171122103235203?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvS29hbGFfVHJlZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+* 这里先以吴恩达网课视频中的为例子：
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture2.png)
+* 从上图可以看出，我们假设是做一个只有车辆、行人和摩托车的识别（C=3），grid cell个数为3x3，bounding box的种类为2，右边的向量就是每一个grid cell将要对应的值。向量的第一位Pc对应着confidence，向量的第二到第五位对应着x,y,w,h，c1,c2,c3对应着这个grid cell的object是每一个类别的概率值，而整个第一道第八个数值，代表着bounding box 1，下面的第九到第十六个数与上述相同，代表着第二个bonding box的结果。
