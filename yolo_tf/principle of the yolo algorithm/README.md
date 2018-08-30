@@ -78,3 +78,11 @@
 
 * 测试的时候：输入一张图像，跑到网络的末端得到7x7x30的三维矩阵，这里虽然没有计算IOU，但是由训练好的权重已经直接计算出了bounding box的confidence。然后再跟预测的类别概率相乘就得到每个bounding box属于哪一类的概率。
 
+
+#
+参考资料
+-------
+1、https://docs.google.com/presentation/d/1aeRvtKG21KHdD5lg6Hgyhx5rPq_ZOsGjG5rJ1HP7BbA/pub?start=false&loop=false&delayms=3000&slide=id.p 
+2、http://blog.csdn.net/tangwei2014/article/details/50915317 
+3、https://zhuanlan.zhihu.com/p/25236464 
+4、https://zhuanlan.zhihu.com/p/24916786
