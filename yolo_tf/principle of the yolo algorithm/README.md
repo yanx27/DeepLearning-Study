@@ -17,8 +17,7 @@
 -------
 * YOLO将输入图像分成SxS个格子，每个格子负责检测‘落入’该格子的物体。若某个物体的中心位置的坐标落入到某个格子，那么这个格子就负责检测出这个物体。如下图所示，图中物体狗的中心点（红色原点）落入第5行、第2列的格子内，所以这个格子负责预测图像中的物体狗。每个格子输出B个bounding box（包含物体的矩形区域）信息，以及C个物体属于哪个类别的概率信息。<br>
 ![](https://pic1.zhimg.com/80/v2-4b3c159386ae24809aa6721cf307df30_hd.jpg)
-* 每个格子都预测C个假定类别的概率。在本文中作者取S=7，B=2，C=20（因为PASCAL VOC有20个类别），所以最后有7*7*30个tensor。S、B和C的定义及卷积变化如图：
-![](https://img-blog.csdn.net/20170521225419467?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxNDM4MDE2NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+* 每个格子都预测C个假定类别的概率。在本文中作者取S=7，B=2，C=20（因为PASCAL VOC有20个类别），所以最后有7*7*30个tensor。
 * Bounding box信息包含5个数据值，分别是x,y,w,h,和confidence。其中x,y是指当前格子预测得到的物体的bounding box的中心位置的坐标（其将每个格子的左上角定义为(0,0)，右下角定义为(1,1)，故x和y是取值为0和1之间的数）。w,h是bounding box的宽度和高度。（其将w和h归一化，用其与每个格子的宽度之比来表示，因此若其bounding box宽度或高度大于格子的宽度，其可能大于1）
 * confidence反映当前bounding box是否包含物体以及物体位置的准确性，计算方式如下：<br>
 
