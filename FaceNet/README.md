@@ -1,6 +1,6 @@
 ## FaceNet
 
-* 代码基于 [FaceNet](https://arxiv.org/pdf/1503.03832.pdf)
+* 代码基于 [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/pdf/1503.03832.pdf)
 
 * 利用FaceNet识别happyhouse中的人物
 
