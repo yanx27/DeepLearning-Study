@@ -1,4 +1,4 @@
-﻿YOLO算法原理（YOU ONLY LOOK ONCE）
+﻿﻿YOLO算法原理（YOU ONLY LOOK ONCE）
 ====  
 #
 * 参考文献为 [You only look once unified real-time object detection](https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Redmon_You_Only_Look_CVPR_2016_paper.pdf) 
@@ -18,7 +18,7 @@
 * YOLO将输入图像分成 SxS个格子（grid cell），每个格子负责检测落入该格子的物体。若某个物体的中心位置的坐标落入到某个格子，那么这个格子就负责检测出这个物体。如下图所示，图中物体狗的中心点（红色原点）落入第5行、第2列的格子内，所以这个格子负责预测图像中的物体狗。每个格子输出B个bounding box（包含物体的矩形区域）信息，以及C个物体属于哪个类别的概率信息。<br>
 ![](https://pic1.zhimg.com/80/v2-4b3c159386ae24809aa6721cf307df30_hd.jpg)
 * 每个格子都预测C个假定类别的概率。在本文中作者取S=7（最终输出7x7的格子），B=2（使用两种bounding box进行计算），C=20（因为PASCAL VOC有20个类别），所以最后全连接层的输出有7x7x30个tensor。<br>
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/principle1.jpg)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/YOLO%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/principle1.jpg)
 * Bounding box信息包含5个数据值，分别是x,y,w,h,和confidence。其中x,y是指当前格子预测得到的物体的bounding box的中心位置的坐标（其将每个格子的左上角定义为(0,0)，右下角定义为(1,1)，故x和y是取值为0和1之间的数）。w,h是bounding box的宽度和高度。（其将w和h归一化，用其与每个格子的宽度之比来表示，因此若其bounding box宽度或高度大于格子的宽度，其可能大于1）
 * confidence反映当前bounding box是否包含物体以及物体位置的准确性，计算方式如下：<br>
 
@@ -34,19 +34,17 @@
 3、YOLO算法的最终输入与输出
 -------
 * 这里先以[DeepLearning.ai](https://mooc.study.163.com/smartSpec/detail/1001319001.htm)视频中的为例子：
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture2.png)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/YOLO%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/picture2.png)
 * 从上图可以看出，我们假设是做一个只有车辆、行人和摩托车的三对象识别问题（C=3），grid cell个数为3x3，bounding box的种类为2，右边的向量就是每一个grid cell将要对应的值。向量的第一位Pc对应着confidence，bx,by,bh,bh代表着这个bonding box的范围，c1,c2,c3对应着这个grid cell的object是每一个类别的概率值，而整个前八个数值，代表着第一个bounding box，下面的第九到第十六个数的含义与第一个bounding box相同，代表着第二个bonding box的结果。
 * 从右边的图可以看出，当这个grid cell没有对象的时候（即Pr(object)=0），底下的那些数值我们并不关心；当底下（绿色格子）中出现了与bouding box 2形状相一致的物体时，向量中代表第二个bounding box的位置有数字，而代表bounding box 1的那些位置Pc为0，故剩下的位置我们不关心。
 * 模型预测时也是同理，输出每个格子的向量，其形成的3x3x16的三维矩阵如图中间所示，这便是对于每一张图片其所对应的训练输入或测试输出。
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture3.png)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/YOLO%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/picture3.png)
 
 #
 4、非最大值抑制（NMS）
 -------
 * 针对某一类别，选择得分最大的bounding box，然后计算它和其它bounding box的IOU值，如果IOU大于0.5（论文中是0.5，实际上也可以设置得更高），说明重复率较大，该得分设为0，如果不大于0.5，则不改；这样一轮后，再选择剩下的score里面最大的那个bounding box，然后计算该bounding box和其它bounding box的IOU，重复以上过程直到最后。最后每个bounding box的C个score取最大的score，如果这个score大于0，那么这个bounding box就是这个socre对应的类别（矩阵的行），如果小于0，说明这个bounding box里面没有物体，跳过即可。<br>
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture4.png)
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture5.png)
-
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/YOLO%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/picture4.png)
 >注：
 >* 由于输出层为全连接层，因此在检测时，YOLO训练模型只支持与训练图像相同的输入分辨率。
 >* 虽然每个格子可以预测B个bounding box，但是最终只选择只选择IOU最高的bounding box作为物体检测输出，即每个格子最多只预测出一个物体。当物体占画面比例较小，如图像中包含畜群或鸟群时，每个格子包含多个物体，但却只能检测出其中一个。这是YOLO方法的一个缺陷。
@@ -65,7 +63,7 @@
 ![](https://www.zhihu.com/equation?tex=loss%3D%5Csum_%7Bi%3D0%7D%5E%7BS%5E%7B2%7D+%7D%7BcoordError+%2B+iouError+%2B+classError%7D+)
 
 * YOLO对上式loss的计算进行了如下修正:<br>
-![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/principle%20of%20the%20yolo%20algorithm/picture6.png)
+![](https://github.com/yanx27/DeepLearning-Study/blob/master/yolo_tf/YOLO%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/picture6.png)
 
 * 在loss function中，前面两行表示localization error(即坐标误差)，第一行是box中心坐标(x,y)的预测，第二行为宽和高的预测。这里注意用宽和高的开根号代替原来的宽和高，这样做主要是因为相同的宽和高误差对于小的目标精度影响比大的目标要大。举个例子，原来w=10，h=20，预测出来w=8，h=22，跟原来w=3，h=5，预测出来w1，h=7相比，其实前者的误差要比后者小，但是如果不加开根号，那么损失都是一样：4+4=8，但是加上根号后，变成0.15和0.7。 
 * 第三、四行表示bounding box的confidence损失，就像前面所说的，分成grid cell包含与不包含object两种情况。这里注意下因为每个grid cell包含两个bounding box，所以只有当ground truth 和该网格中的某个bounding box的IOU值最大的时候，才计算这项。 
@@ -86,4 +84,3 @@
 -------
 * [论文阅读笔记：You Only Look Once: Unified, Real-Time Object Detection](http://blog.csdn.net/tangwei2014/article/details/50915317)
 * [YOLO详解](https://zhuanlan.zhihu.com/p/25236464 )
-
