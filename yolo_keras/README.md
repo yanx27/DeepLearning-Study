@@ -11,7 +11,7 @@
 >* 2、YOLO是基于图像的全局信息进行预测的。这一点和基于sliding window以及region proposal等检测算法不一样。与Fast R-CNN相比，YOLO在误检测（将背景检测为物体）方面的错误率能降低一半多。
 >* 3、YOLO可以学到物体的generalizable representations。可以理解为泛化能力强。
 >* 4、准确率高，有实验证明。* 在论文中，通过引入一个深度残差学习框架来解决退化问题（degradation，就是指非常深的网络的性能反而比较浅的网络差，而且越深越差）。
- 
+
 #
 2、核心思想
 -------
