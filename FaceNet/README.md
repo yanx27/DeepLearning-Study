@@ -1,6 +1,6 @@
 ## FaceNet
 
-* 代码基于 [FaceNet](https://arxiv.org/pdf/1503.03832.pdf)
+* 代码基于 [FaceNet: A Unified Embedding for Face Recognition and Clustering](https://arxiv.org/abs/1503.03832)
 
 * 利用FaceNet识别happyhouse中的人物
 
@@ -10,11 +10,10 @@
 
 * 运行结果：<br>
 ![](https://github.com/yanx27/DeepLearning-Study/blob/master/FaceNet/camera_0.jpg)
-'''
-It's younes, welcome home!
 
-(0.65939283, True)
-'''
+>     It's younes, welcome home!
+>     (0.65939283, True)
+
 	
 ## 所用的库版本
 1. Tensorflow 1.14.1
