@@ -44,8 +44,9 @@
     2.一张hard negative：即在类间的另外20x999图像中，跟它最为相似的图片。(负样本里面最差的样本)<br>
     挑选hard positive 和hard negative有两种方法，offline和online方法，具体的差别只是在训练上。<br>
 * triplets 的选择对模型的收敛非常重要。如公式1所示，对于<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{i}^{a}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;x_{i}^{a}" title="x_{i}^{a}" /></a> ，我们我们需要选择同一个体的不同图片<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{i}^{p}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;x_{i}^{p}" title="x_{i}^{p}" /></a> ，使<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;argmax_{x_{i}^{p}&space;}&space;\left|&space;\left|&space;f(x_{i}^{a}&space;)-f(x_{i}^{p}&space;)\right|&space;\right|&space;_{2}^{2}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;argmax_{x_{i}^{p}&space;}&space;\left|&space;\left|&space;f(x_{i}^{a}&space;)-f(x_{i}^{p}&space;)\right|&space;\right|&space;_{2}^{2}" title="argmax_{x_{i}^{p} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{p} )\right| \right| _{2}^{2}" /></a> ；同时，还需要选择不同个体的图片<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{i}^{n}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;x_{i}^{n}" title="x_{i}^{n}" /></a> ，使得<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;argmin_{x_{i}^{n}&space;}&space;\left|&space;\left|&space;f(x_{i}^{a}&space;)-f(x_{i}^{n}&space;)\right|&space;\right|&space;_{2}^{2}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;argmin_{x_{i}^{n}&space;}&space;\left|&space;\left|&space;f(x_{i}^{a}&space;)-f(x_{i}^{n}&space;)\right|&space;\right|&space;_{2}^{2}" title="argmin_{x_{i}^{n} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{n} )\right| \right| _{2}^{2}" /></a>。在实际训练中，跨越所有训练样本来计算argmin和argmax是不现实的，还会由于错误标签图像导致训练收敛困难。
-* 实际训练中，有两种方法来进行筛选：<br>
-一，每隔n步，计算子集的argmin和argmax。<br>
-二，在线生成triplets，即在每个mini-batch中进行筛选positive/negative样本。<br>
+* 在整个训练集上寻找argmax和argmin是困难的。如果找不到，会使训练变得困难,难以收敛，例如错误的打标签。因此需要采取两种显而易见的方法避免这个问题：：<br>
+一，离线更新三元组(每隔n步)，采用最近的网络模型的检测点 并计算数据集的子集的argmin和argmax(局部最优)。。<br>
+二，在线更新三元组。在mini-batch上 选择不好的正(类内)/负(类间)训练模型。(一个mini-batch可以训练出一个子模型)。<br>
 本文中，我们采用在线生成triplets的方法。我们选择了大样本的mini-batch（1800样本/batch）来增加每个batch的样本数量。每个mini-batch中，我们对单个个体选择40张人脸图片作为正样本，随机筛选其它人脸图片作为负样本。负样本选择不当也可能导致训练过早进入局部最小。为了避免，我们采用如下公式来帮助筛选负样本：<br>
 ![](https://pic3.zhimg.com/80/v2-2af5cd0d92a4ab587cf44db2b463241a_hd.jpg)
+* 总结：以上所有过程博概括为：为了快速收敛模型-->需要找到训练的不好的mini-batch上的差模型(负样本)-->从而找到不满足约束条件/使损失增大的三元组
