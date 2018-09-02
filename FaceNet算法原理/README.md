@@ -43,7 +43,7 @@
     1.一张hard positive：即在类内的另外19张图像中，跟它最不相似的图片。(正样本里面最差的样本)<br>
     2.一张hard negative：即在类间的另外20x999图像中，跟它最为相似的图片。(负样本里面最差的样本)<br>
     挑选hard positive 和hard negative有两种方法，offline和online方法，具体的差别只是在训练上。<br>
-* triplets 的选择对模型的收敛非常重要。如公式1所示，对于<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{i}^{a}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;x_{i}^{a}" title="x_{i}^{a}" /></a> ，我们我们需要选择同一个体的不同图片x_{i}^{p} ，使argmax_{x_{i}^{p} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{p} )\right|  \right| _{2}^{2} ；同时，还需要选择不同个体的图片x_{i}^{n} ，使得argmin_{x_{i}^{n} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{n} )\right|  \right| _{2}^{2} 。在实际训练中，跨越所有训练样本来计算argmin和argmax是不现实的，还会由于错误标签图像导致训练收敛困难。
+* triplets 的选择对模型的收敛非常重要。如公式1所示，对于<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;x_{i}^{a}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\inline&space;x_{i}^{a}" title="x_{i}^{a}" /></a> ，我们我们需要选择同一个体的不同图片x_{i}^{p} ，使argmax_{x_{i}^{p} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{p} )\right|  \right| _{2}^{2} ；同时，还需要选择不同个体的图片x_{i}^{n} ，使得argmin_{x_{i}^{n} } \left| \left| f(x_{i}^{a} )-f(x_{i}^{n} )\right|  \right| _{2}^{2} 。在实际训练中，跨越所有训练样本来计算argmin和argmax是不现实的，还会由于错误标签图像导致训练收敛困难。
 * 实际训练中，有两种方法来进行筛选：
 一，每隔n步，计算子集的argmin和argmax。
 二，在线生成triplets，即在每个mini-batch中进行筛选positive/negative样本。
