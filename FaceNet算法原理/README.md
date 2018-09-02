@@ -31,4 +31,6 @@ Triplet Loss(三元组损失函数)
 * 根据上文，可以构建一个约束条件：<br>
 ![](https://pic2.zhimg.com/80/v2-fb0de06aa80bfd4bb6eb9a24f9855c6b_hd.jpg)
 ![](https://pic3.zhimg.com/80/v2-89f6cb30446edc2f7748ed0541d1aeba_hd.jpg)
-其中，alpha为positive/negtive的边界。
+
+其中，alpha为positive/negtive的边界, (1)表示：左边类内的距离（加上边际）要小于右边类间的距离，这个约束需要在所有的三元组上都成立。
+
