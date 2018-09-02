@@ -30,4 +30,5 @@ Triplet Loss(三元组损失函数)
 ![](https://pic2.zhimg.com/80/v2-e97dea2c74c31b53803925294983b7c8_hd.jpg)
 * 根据上文，可以构建一个约束条件：<br>
 ![](https://pic2.zhimg.com/80/v2-fb0de06aa80bfd4bb6eb9a24f9855c6b_hd.jpg)
-其中，\alpha 为positive/negtive的边界。
+![](https://pic3.zhimg.com/80/v2-89f6cb30446edc2f7748ed0541d1aeba_hd.jpg)
+其中，alpha为positive/negtive的边界。
