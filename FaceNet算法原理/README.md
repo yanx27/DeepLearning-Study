@@ -48,4 +48,4 @@
 一，每隔n步，计算子集的argmin和argmax。<br>
 二，在线生成triplets，即在每个mini-batch中进行筛选positive/negative样本。<br>
 本文中，我们采用在线生成triplets的方法。我们选择了大样本的mini-batch（1800样本/batch）来增加每个batch的样本数量。每个mini-batch中，我们对单个个体选择40张人脸图片作为正样本，随机筛选其它人脸图片作为负样本。负样本选择不当也可能导致训练过早进入局部最小。为了避免，我们采用如下公式来帮助筛选负样本：<br>
-![](https://pic3.zhimg.com/80/v2-2af5cd0d92a4ab587cf44db2b463241a_hd.jpg
+![](https://pic3.zhimg.com/80/v2-2af5cd0d92a4ab587cf44db2b463241a_hd.jpg)
