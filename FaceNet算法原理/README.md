@@ -59,5 +59,5 @@
     3.依然选择最为困难的anchor negative图像对 (可以提前发现不好的局部最小值)<br>
 * 选择最为困难的负样本，在实际当中，容易导致在训练中很快地陷入局部最优，或者说整个学习崩溃f(x)=0。为了避免，我们采用如下公式来帮助筛选负样本：<br>
 ![](https://pic3.zhimg.com/80/v2-2af5cd0d92a4ab587cf44db2b463241a_hd.jpg)
-> 左边：Positive pair的欧式距离; 右边：negative pair的欧式距离,把这一个约束叫作semi-hard(半序关系)。因为虽然这些negative pair的欧式距离远小于 Positive pair的欧式距离，但是negative pair的欧式距离的平方接近于Positive pair的欧式距离的平方。
+> 左边：Positive pair的欧式距离; 右边：negative pair的欧式距离,把这一个约束叫作semi-hard(半序关系),所谓的semi-hard即不考虑alpha因素。因为虽然这些negative pair的欧式距离远小于 Positive pair的欧式距离，但是negative pair的欧式距离的平方接近于Positive pair的欧式距离的平方。
 * 总结：以上所有过程博概括为：为了快速收敛模型-->需要找到训练的不好的mini-batch上的差模型(负样本)-->从而找到不满足约束条件/使损失增大的三元组
