@@ -61,3 +61,14 @@
 ![](https://pic3.zhimg.com/80/v2-2af5cd0d92a4ab587cf44db2b463241a_hd.jpg)
 > 左边：Positive pair的欧式距离; 右边：negative pair的欧式距离,把这一个约束叫作semi-hard(半序关系),所谓的semi-hard即不考虑alpha因素。因为虽然这些negative pair的欧式距离远小于 Positive pair的欧式距离，但是negative pair的欧式距离的平方接近于Positive pair的欧式距离的平方。
 * 总结：以上所有过程博概括为：为了快速收敛模型-->需要找到训练的不好的mini-batch上的差模型(负样本)-->从而找到不满足约束条件/使损失增大的三元组
+
+#
+4、深度卷积神经网络
+-------
+* 采用adagrad优化器，使用随机梯度下降法训练CNN模型。在cpu集群上训练了1000-2000小时。边界值\alpha 设定为0.2。总共实验了两类模型，参数如表4-1和表4-2所示。
+表4-1 CNN模型1<br>
+![](https://pic2.zhimg.com/80/v2-f5cec8e65f5feb44578f8637b35d375d_hd.jpg)
+
+表4-2CNN模型2<br>
+![](https://pic2.zhimg.com/80/v2-b74bd2f48d2825157dcaa2704b0e27e3_hd.jpg)
+
