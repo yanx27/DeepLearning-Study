@@ -44,6 +44,6 @@ ResourceExhaustedError (see above for traceback): OOM when allocating tensor wit
 	```
 
 ### 所用的库版本
-1. Tensorflow 1.14.1
+1. Tensorflow 1.4
 
 2. OpenCV 3.0
