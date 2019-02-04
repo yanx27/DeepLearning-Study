@@ -42,7 +42,7 @@ ResourceExhaustedError (see above for traceback): OOM when allocating tensor wit
 	```Shell
 	$ python test.py
 	```
-
+ 
 ### 所用的库版本
 1. Tensorflow 1.4
 
